@@ -25,46 +25,26 @@ RS_ThingSpeak/
 └── README.md
 
 
+## 🔧 Installation
+1. Download the library as ZIP or clone the repo.  
+2. In Arduino IDE: `Sketch` → `Include Library` → `Add .ZIP Library...`  
+3. Select the ZIP.  
 
-## 🚀 Getting Started
-
-### Install
-1. Clone or download this repo into your Arduino `libraries/` folder.
-2. Open Arduino IDE → Sketch → Include Library → Add .ZIP Library (if zipped).
-
-### Usage
-
+## 🚀 Usage
+Include in your sketch:
 ```cpp
 #include <WiFi.h>
-#include "RS_ThingSpeak.h"
+#include <RS_ThingSpeak.h>
 #include "secrets.h"
 
-RS_ThingSpeak ts;
-ThingSpeakKeys keys;
 
-void setup() {
-  Serial.begin(115200);
-  WiFi.begin(SECRET_SSID, SECRET_PASS);
+Provide your credentials in secrets.h (only the ones you need):
+const char* WIFI_SSID     = "your-ssid";
+const char* WIFI_PASSWORD = "your-password";
+const char* WRITE_API_KEY = "your-write-api-key";   // For sending
+const char* READ_API_KEY  = "your-read-api-key";    // For reading
+const char* TALKBACK_API_KEY = "your-talkback-api-key"; // For TalkBack
+const char* TALKBACK_ID      = "your-talkback-id";
+const char* CHANNEL_ID       = "your-channel-id";
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("Connected!");
-
-  keys.writeApiKey   = "YOUR_WRITE_KEY";
-  keys.readApiKey    = "YOUR_READ_KEY";
-  keys.talkBackApiKey= "YOUR_TALKBACK_KEY";
-  keys.talkBackID    = "YOUR_TALKBACK_ID";
-  keys.channelID     = "YOUR_CHANNEL_ID";
-
-  ts.begin(keys);
-
-  // Example: Send to 2 fields
-  int fields[2] = {1, 2};
-  String values[2] = {"25.5", "60.2"};
-  ts.sendData(fields, values, 2);
-}
-
-See examples/ for full sketches.
-
+See examples inside the examples/ folder.
