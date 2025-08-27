@@ -1,0 +1,7 @@
+RS_ThingSpeak    		KEYWORD1
+begin            		KEYWORD2
+sendData         		KEYWORD2
+readData         		KEYWORD2
+readTalkBackCommandByID  	KEYWORD2
+
+ThingSpeakKeys   		KEYWORD1
